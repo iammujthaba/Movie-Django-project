@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
+        background-color: #fff;
+    }
+    
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .card-text {
+        font-size: 16px;
+        color: #555;
+    }
+
+    .btn-primary {
+        background-color: #1ed856;
+        border-color: #1ed856;
+        color: #fff;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 25px;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        {% for i in movie_list %}
+        <div class="col-md-4">
+            <div class="card">
+                <img class="card-img-top" src="{{i.img.url}}" alt="{{i.name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <p class="card-text">{{i.desc}}</p>
+                    <a href="{% url 'movieapp:detail' i.id %}" class="btn btn-primary">Movie Info</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
